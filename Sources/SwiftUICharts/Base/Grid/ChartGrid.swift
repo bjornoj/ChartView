@@ -16,7 +16,7 @@ public struct ChartGrid<Content: View>: View, ChartBase {
         HStack {
             ZStack {
                 VStack {
-                    ForEach(0..<numberOfHorizontalLines) { _ in 
+                    ForEach(0 ..< numberOfHorizontalLines) { _ in
                         GridElement()
                         Spacer()
                     }
@@ -36,9 +36,9 @@ struct GridElement: View {
 
 struct DashedLine: View {
     func line(frame: CGRect) -> Path {
-        let baseLine: CGFloat = CGFloat(frame.height / 2)
+        let baseLine = CGFloat(frame.height / 2)
         var hLine = Path()
-        hLine.move(to: CGPoint(x:0, y: baseLine))
+        hLine.move(to: CGPoint(x: 0, y: baseLine))
         hLine.addLine(to: CGPoint(x: frame.width, y: baseLine))
         return hLine
     }
@@ -50,4 +50,3 @@ struct DashedLine: View {
         }
     }
 }
-

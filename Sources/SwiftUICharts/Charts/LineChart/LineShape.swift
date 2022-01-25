@@ -2,8 +2,28 @@ import SwiftUI
 
 struct LineShape: Shape {
     var data: [Double]
-    func path(in rect: CGRect) -> Path {
-        let path = Path.quadCurvedPathWithPoints(points: data, step: CGPoint(x: 1.0, y: 1.0))
+
+    var animatableData: [Double] {
+        get { data }
+        set {data = newValue}
+    }
+
+    func path(in _: CGRect) -> Path {
+        let step = CGPoint(x: 1.0, y: 1.0)
+        var path = Path()
+        if data.count < 2 {
+            return path
+        }
+        let offset = data.min() ?? 0
+        var point1 = CGPoint(x: 0, y: CGFloat(data[0] - offset) * step.y)
+        path.move(to: point1)
+        for pointIndex in 1 ..< data.count {
+            let point2 = CGPoint(x: step.x * CGFloat(pointIndex), y: step.y * CGFloat(data[pointIndex] - offset))
+            let midPoint = CGPoint.midPointForPoints(firstPoint: point1, secondPoint: point2)
+            path.addQuadCurve(to: midPoint, control: CGPoint.controlPointForPoints(firstPoint: midPoint, secondPoint: point1))
+            path.addQuadCurve(to: point2, control: CGPoint.controlPointForPoints(firstPoint: midPoint, secondPoint: point2))
+            point1 = point2
+        }
         return path
     }
 }

@@ -36,6 +36,6 @@ public class ChartData: ObservableObject {
     }
 
     public init() {
-        self.data = []
+        data = []
     }
 }

@@ -2,9 +2,9 @@ import SwiftUI
 
 /// A dot representing a single data point as user moves finger over line in `LineChart`
 struct IndicatorPoint: View {
-	/// The content and behavior of the `IndicatorPoint`.
-	///
-	/// A filled circle with a thick white outline and a shadow
+    /// The content and behavior of the `IndicatorPoint`.
+    ///
+    /// A filled circle with a thick white outline and a shadow
     public var body: some View {
         ZStack {
             Circle()

@@ -9,29 +9,30 @@ public struct BarChartCell: View {
 
     @State private var didCellAppear: Bool = false
 
-    public init( value: Double,
-                 index: Int = 0,
-                 gradientColor: ColorGradient,
-                 touchLocation: CGFloat) {
+    public init(value: Double,
+                index: Int = 0,
+                gradientColor: ColorGradient,
+                touchLocation: CGFloat)
+    {
         self.value = value
         self.index = index
         self.gradientColor = gradientColor
         self.touchLocation = touchLocation
     }
 
-	/// The content and behavior of the `BarChartCell`.
-	///
-	/// Animated when first displayed, using the `firstDisplay` variable, with an increasing delay through the data set.
+    /// The content and behavior of the `BarChartCell`.
+    ///
+    /// Animated when first displayed, using the `firstDisplay` variable, with an increasing delay through the data set.
     public var body: some View {
         BarChartCellShape(value: didCellAppear ? value : 0.0)
-        .fill(gradientColor.linearGradient(from: .bottom, to: .top))        .onAppear {
-            self.didCellAppear = true
-        }
-        .onDisappear {
-            self.didCellAppear = false
-        }
-        .transition(.slide)
-        .animation(Animation.spring().delay(self.touchLocation < 0 || !didCellAppear ? Double(self.index) * 0.04 : 0))
+            .fill(gradientColor.linearGradient(from: .bottom, to: .top)).onAppear {
+                self.didCellAppear = true
+            }
+            .onDisappear {
+                self.didCellAppear = false
+            }
+            .transition(.slide)
+            .animation(Animation.spring().delay(self.touchLocation < 0 || !didCellAppear ? Double(self.index) * 0.04 : 0))
     }
 }
 

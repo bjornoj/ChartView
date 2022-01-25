@@ -11,17 +11,17 @@ struct BarChartCellShape: Shape, Animatable {
     func path(in rect: CGRect) -> Path {
         let adjustedOriginY = rect.height - (rect.height * CGFloat(value))
         var path = Path()
-        path.move(to: CGPoint(x: 0.0 , y: rect.height))
+        path.move(to: CGPoint(x: 0.0, y: rect.height))
         path.addLine(to: CGPoint(x: 0.0, y: adjustedOriginY + cornerRadius))
-        path.addArc(center: CGPoint(x: cornerRadius, y: adjustedOriginY +  cornerRadius),
+        path.addArc(center: CGPoint(x: cornerRadius, y: adjustedOriginY + cornerRadius),
                     radius: cornerRadius,
                     startAngle: Angle(radians: Double.pi),
-                    endAngle: Angle(radians: -Double.pi/2),
+                    endAngle: Angle(radians: -Double.pi / 2),
                     clockwise: false)
         path.addLine(to: CGPoint(x: rect.width - cornerRadius, y: adjustedOriginY))
         path.addArc(center: CGPoint(x: rect.width - cornerRadius, y: adjustedOriginY + cornerRadius),
                     radius: cornerRadius,
-                    startAngle: Angle(radians: -Double.pi/2),
+                    startAngle: Angle(radians: -Double.pi / 2),
                     endAngle: Angle(radians: 0),
                     clockwise: false)
         path.addLine(to: CGPoint(x: rect.width, y: rect.height))

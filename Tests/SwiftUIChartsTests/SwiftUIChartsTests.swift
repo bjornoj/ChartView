@@ -1,5 +1,5 @@
-import XCTest
 @testable import SwiftUICharts
+import XCTest
 
 final class SwiftUIChartsTests: XCTestCase {
     func testExample() {
@@ -9,6 +9,6 @@ final class SwiftUIChartsTests: XCTestCase {
     }
 
     static var allTests = [
-        ("testExample", testExample)
+        ("testExample", testExample),
     ]
 }

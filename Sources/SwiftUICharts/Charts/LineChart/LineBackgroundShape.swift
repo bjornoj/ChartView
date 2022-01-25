@@ -1,8 +1,10 @@
+// Created 11.01.2022
+
 import SwiftUI
 
 struct LineBackgroundShape: Shape {
     var data: [Double]
-    func path(in rect: CGRect) -> Path {
+    func path(in _: CGRect) -> Path {
         let path = Path.quadClosedCurvedPathWithPoints(points: data, step: CGPoint(x: 1.0, y: 1.0))
         return path
     }
@@ -28,4 +30,3 @@ struct LineBackgroundShape_Previews: PreviewProvider {
         }
     }
 }
-
