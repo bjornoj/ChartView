@@ -5,7 +5,7 @@ struct LineShape: Shape {
 
     var animatableData: [Double] {
         get { data }
-        set {data = newValue}
+        set { data = newValue }
     }
 
     func path(in _: CGRect) -> Path {

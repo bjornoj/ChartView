@@ -23,7 +23,7 @@ struct LineShapeView: View, Animatable {
                                    startPoint: .leading,
                                    endPoint: .trailing),
                     style: StrokeStyle(lineWidth: lineStyle.lineWidth, lineJoin: lineStyle.lineJoinType))
-                .transition(.slide)
+            .transition(.slide)
             .rotationEffect(.degrees(180), anchor: .center)
             .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
     }

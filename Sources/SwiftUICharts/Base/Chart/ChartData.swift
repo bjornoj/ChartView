@@ -2,13 +2,13 @@ import SwiftUI
 
 /// An observable wrapper for an array of data for use in any chart
 public class ChartData: ObservableObject {
-    @Published public var data: [(String, Double)] = []
+    @Published public var data: [(Date, Double)] = []
 
     var points: [Double] {
         data.map { $0.1 }
     }
 
-    var values: [String] {
+    var values: [Date] {
         data.map { $0.0 }
     }
 
@@ -28,10 +28,10 @@ public class ChartData: ObservableObject {
     /// Initialize with data array
     /// - Parameter data: Array of `Double`
     public init(_ data: [Double]) {
-        self.data = data.map { ("", $0) }
+        self.data = data.map { (Date(timeIntervalSince1970: 0), $0) }
     }
 
-    public init(_ data: [(String, Double)]) {
+    public init(_ data: [(Date, Double)]) {
         self.data = data
     }
 
