@@ -17,6 +17,19 @@ struct LineShape: Shape {
         let offset = data.min() ?? 0
         var point1 = CGPoint(x: 0, y: CGFloat(data[0] - offset) * step.y)
         path.move(to: point1)
+
+        // just draw a straight line if they're all the same
+        var isAllTheSame = true
+        for point in data {
+            if point != data[0] {
+                isAllTheSame = false
+            }
+        }
+        if isAllTheSame {
+            path.addLine(to: CGPoint(x: data.count, y: 0))
+            return path
+        }
+
         for pointIndex in 1 ..< data.count {
             let point2 = CGPoint(x: step.x * CGFloat(pointIndex), y: step.y * CGFloat(data[pointIndex] - offset))
             let midPoint = CGPoint.midPointForPoints(firstPoint: point1, secondPoint: point2)
