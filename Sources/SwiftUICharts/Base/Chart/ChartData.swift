@@ -5,7 +5,7 @@ public class ChartData: ObservableObject {
     @Published public var data: [(Date, Double)] = []
 
     var points: [Double] {
-        data.map { $0.1 }
+        data.map { $0.1.noNaN() }
     }
 
     var values: [Date] {
@@ -14,11 +14,11 @@ public class ChartData: ObservableObject {
 
     var normalisedPoints: [Double] {
         let absolutePoints = points.map { abs($0) }
-        return points.map { $0 / (absolutePoints.max() ?? 1.0) }
+        return points.map { $0 / (absolutePoints.max()?.noNaN() ?? 1.0) }
     }
 
     var normalisedRange: Double {
-        (normalisedPoints.max() ?? 0.0) - (normalisedPoints.min() ?? 0.0)
+        (normalisedPoints.max() ?? 0.0) - (normalisedPoints.min()?.noNaN() ?? 0.0)
     }
 
     var isInNegativeDomain: Bool {
@@ -28,7 +28,7 @@ public class ChartData: ObservableObject {
     /// Initialize with data array
     /// - Parameter data: Array of `Double`
     public init(_ data: [Double]) {
-        self.data = data.map { (Date(timeIntervalSince1970: 0), $0) }
+        self.data = data.map { (Date(timeIntervalSince1970: 0), $0.noNaN()) }
     }
 
     public init(_ data: [(Date, Double)]) {
@@ -37,5 +37,11 @@ public class ChartData: ObservableObject {
 
     public init() {
         data = []
+    }
+}
+
+extension Double {
+    func noNaN() -> Double {
+        isNaN ? 0 : self
     }
 }
