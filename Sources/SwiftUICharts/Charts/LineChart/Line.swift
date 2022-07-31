@@ -29,7 +29,9 @@ public struct Line: View {
                     LineBackgroundShapeView(chartData: chartData,
                                             geometry: geometry,
                                             style: style)
+                    .animation(.easeIn)
                 }
+                 
                 LineShapeView(chartData: chartData,
                               geometry: geometry,
                               style: style,
